@@ -1,13 +1,15 @@
 const knex = require("../db/connection");
 
-function averageRating() {
+async function averageRating() {
   // your solution here
-  return knex("restaurants").avg("rating").first();
+  const response = await knex("restaurants").avg("rating").first();
+  return { average_rating: Number(response.avg) };
 }
 
-function count() {
+async function count() {
   // your solution here
-  return knex("restaurants").count("restaurant_name").first();
+  const response = await knex('restaurants').count('restaurant_name').first();
+  return { count: parseInt(response.count) };
 }
 
 function create(newRestaurant) {
@@ -28,9 +30,10 @@ function read(restaurant_id) {
   return knex("restaurants").select("*").where({ restaurant_id }).first();
 }
 
-function readHighestRating() {
+async function readHighestRating() {
   // your solution here
-  return knex("restaurants").max("rating").first();
+  const response = await knex('restaurants').max('rating').first();
+  return { max_rating: Number(response.max).toFixed(2) };
 }
 
 function update(updatedRestaurant) {

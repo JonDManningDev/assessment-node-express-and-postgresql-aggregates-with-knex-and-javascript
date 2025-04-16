@@ -3,9 +3,7 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function averageRating(req, res, next) {
   // your solution here
-  const response = await service.averageRating();
-  const average = Number(response.avg);
-  res.json({ data: { average_rating: average } });
+  res.json({ data: await service.averageRating() });
 }
 
 async function list(req, res) {
@@ -14,9 +12,7 @@ async function list(req, res) {
 
 async function count(req, res, next) {
   // your solution here
-  const response = await service.count();
-  const total = parseInt(response.count);
-  res.json({ data: { count: total } });
+  res.json({ data: await service.count() });
 }
 
 async function create(req, res, next) {
@@ -32,9 +28,7 @@ async function read(req, res) {
 
 async function readHighestRating(req, res, next) {
   // your solution here
-  const response = await service.readHighestRating();
-  const highestRating = Number(response.max).toFixed(2);
-  res.json({ data: { max_rating: highestRating } });
+  res.json({ data: await service.readHighestRating() });
 }
 
 async function restaurantExists(req, res, next) {
